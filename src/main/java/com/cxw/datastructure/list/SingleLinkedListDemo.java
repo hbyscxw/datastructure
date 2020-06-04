@@ -14,7 +14,7 @@ public class SingleLinkedListDemo {
         list.add(new SingleNode(2,"aa","aa"));
         list.add(new SingleNode(3,"aaa","aaa"));
         list.print();
-        list.reversal();
+        list.reversal(); //翻转
         System.out.println(list.size());
         list.update(new SingleNode(2,"aa2","aa2"));
         list.print();
@@ -99,10 +99,10 @@ class SingleLinkedList{
         SingleNode next = null;
         SingleNode newHead = new SingleNode(-1,"","");
         while(cur!=null){
-            next = cur.next;
-            cur.next = newHead.next;
-            newHead.next = cur;
-            cur = next;
+            next = cur.next;//保存当前节点的下一个节点
+            cur.next = newHead.next; //将当前节点的下一个节点指向新链表头节点的下一个节点
+            newHead.next = cur; //将当前节点接到新链表上
+            cur = next;//将当前节点后移
         }
         head.next = newHead.next;
     }
