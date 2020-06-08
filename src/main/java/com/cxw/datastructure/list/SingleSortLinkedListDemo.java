@@ -17,6 +17,13 @@ public class SingleSortLinkedListDemo {
         list.print();
         list.delete(2);
         list.print();
+        System.out.println("--------------");
+        SingleSortLinkedList list2 = new SingleSortLinkedList();
+        list2.add(new SingleNode(11,"b","b"));
+        list2.add(new SingleNode(31,"d","d"));
+        list2.add(new SingleNode(21,"c","c"));
+        list.addAll(list2);
+        list.print();
     }
 }
 
@@ -42,6 +49,16 @@ class SingleSortLinkedList{
             temp.next = node;
         }else{
             temp.next = node;
+        }
+    }
+
+    public void addAll(SingleSortLinkedList list){
+        SingleNode temp = list.head.next;
+        while(temp!=null){
+            SingleNode next = temp.next;
+            temp.next = null;
+            add(temp);
+            temp = next;
         }
     }
 
