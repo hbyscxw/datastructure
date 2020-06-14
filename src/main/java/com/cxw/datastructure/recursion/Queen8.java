@@ -1,6 +1,6 @@
 package com.cxw.datastructure.recursion;
 
-public class Queue8 {
+public class Queen8 {
     private static int max = 8;
     private static int[] array = new int[max];
     private static int count = 0;
