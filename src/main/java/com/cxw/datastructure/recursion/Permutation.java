@@ -24,7 +24,7 @@ public class Permutation {
         }
 
         for (int i = start; i < arr.length; i++) {
-           if(isUnique(arr,start,i)){
+            if(isUnique(arr,start,i)){
                 swap(arr,start,i);
                 bfs(arr,start+1);
                 /*
@@ -36,7 +36,7 @@ public class Permutation {
                  * 原原本本给换回来。每一层都一样，所以不会乱。
                  */
                 swap(arr,start,i);
-           }
+            }
         }
     }
 
