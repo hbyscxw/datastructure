@@ -9,8 +9,8 @@ import java.util.Arrays;
  */
 public class SortDemo {
     public static void main(String[] args) {
-        int[] ary = {10,1,4,5,100,50,30,20,6,7,8};
-        insertSort(ary);
+        int[] ary = {10,1,4,5,100,50,30,20,6,7,8,3};
+        shellInsertSort(ary);
         System.out.println(Arrays.toString(ary));
     }
 
@@ -47,7 +47,7 @@ public class SortDemo {
 
     private static void shellInsertSort(int[] ary) {
         for (int step = ary.length/2; step > 0 ; step/=2) {
-            for (int i = step; i < ary.length; i++) {
+            for (int i = step; i < ary.length; i+=step) {
                 int insertValue = ary[i];
                 boolean lt = false;
                 int index = 0;
@@ -65,6 +65,24 @@ public class SortDemo {
                 }
             }
         }
+
+//        for (int i = 5; i < ary.length; i+=5) {
+//            int insertValue = ary[i];
+//            boolean lt = false;
+//            int index = 0;
+//            for (int j = i-5; j >=0; j-=5) {
+//                if(ary[j]>insertValue){
+//                    ary[j+5] = ary[j];
+//                    lt = true;
+//                }else{
+//                    index = j+5;
+//                    break;
+//                }
+//            }
+//            if(lt){
+//                ary[index] = insertValue;
+//            }
+//        }
     }
     private static void insertSort(int[] ary) {
         for (int i = 1; i < ary.length; i++) {
