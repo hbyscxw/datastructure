@@ -10,8 +10,96 @@ import java.util.Arrays;
 public class SortDemo {
     public static void main(String[] args) {
         int[] ary = {10, 1, 4, 5, 100, 50, 30, 20, 6, 7, 8};
-        mergeSort(ary);
+        radixSort(ary);
         System.out.println(Arrays.toString(ary));
+    }
+
+    private static void radixSort(int[] ary) {
+        //取最大位
+        int max = ary[0];
+        for (int i = 1; i < ary.length ; i++) {
+            if(max<ary[i]) {
+                max = ary[i];
+            }
+        }
+        int maxIndex = (max+"").length();
+
+        int[][] radix = new int[10][ary.length];
+        int[] radixCount = new int[10];
+        for (int n = 0; n < maxIndex; n++) {
+            for (int k = 0; k < ary.length; k++) {
+                //取n位   Math.pow 计算 n次方
+                int value = ary[k]/(int)Math.pow(10,n)%10;
+                radix[value][radixCount[value]] = ary[k];
+                radixCount[value]++;
+            }
+            int index = 0;
+            for (int i = 0; i < radixCount.length; i++) {
+                int count = radixCount[i];
+                if(count>0){
+                    for (int j = 0; j < count; j++) {
+                        ary[index++] = radix[i][j] ;
+                    }
+                }
+                radixCount[i] = 0;
+            }
+        }
+
+        /*
+        int[][] radix = new int[10][ary.length];
+        int[] radixCount = new int[10];
+        for (int k = 0; k < ary.length; k++) {
+            //取个位
+            int value = ary[k]%10;
+            radix[value][radixCount[value]] = ary[k];
+            radixCount[value]++;
+        }
+        int index = 0;
+        for (int i = 0; i < radixCount.length; i++) {
+            int count = radixCount[i];
+            if(count>0){
+                for (int j = 0; j < count; j++) {
+                    ary[index++] = radix[i][j] ;
+                }
+            }
+            radixCount[i] = 0;
+        }
+
+
+        for (int k = 0; k < ary.length; k++) {
+            //取十位
+            int value = ary[k]/10 % 10;
+            radix[value][radixCount[value]] = ary[k];
+            radixCount[value]++;
+        }
+        index = 0;
+        for (int i = 0; i < radixCount.length; i++) {
+            int count = radixCount[i];
+            if(count>0){
+                for (int j = 0; j < count; j++) {
+                    ary[index++] = radix[i][j] ;
+                }
+            }
+            radixCount[i] = 0;
+        }
+
+        for (int k = 0; k < ary.length; k++) {
+            //取百位
+            int value = ary[k]/100 % 10;
+            radix[value][radixCount[value]] = ary[k];
+            radixCount[value]++;
+        }
+        index = 0;
+        for (int i = 0; i < radixCount.length; i++) {
+            int count = radixCount[i];
+            if(count>0){
+                for (int j = 0; j < count; j++) {
+                    ary[index++] = radix[i][j] ;
+                }
+            }
+            radixCount[i] = 0;
+        }
+        */
     }
 
     private static void mergeSort(int[] ary) {
