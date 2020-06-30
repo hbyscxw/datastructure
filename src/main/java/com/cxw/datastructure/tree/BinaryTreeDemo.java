@@ -11,12 +11,32 @@ public class BinaryTreeDemo {
         nodo1.right = nodo3;
         nodo3.right = nodo4;
         tree.root = nodo1;
-        BinaryNode resNode = tree.preOrderSearch(3);
-        System.out.println(resNode);
+//        BinaryNode resNode = tree.preOrderSearch(3);
+//        System.out.println(resNode);
+        tree.infixOrder();
+        tree.deleteNode(nodo1.id);
+        System.out.println("~~~~~~~");
+        tree.infixOrder();
+
     }
 }
 class BinaryTree{
     BinaryNode root;
+    public void preOrder(){
+        if(root!=null){
+            root.preOrder();
+        }
+    }
+    public void infixOrder(){
+        if(root!=null){
+            root.infixOrder();
+        }
+    }
+    public void postOrder(){
+        if(root!=null){
+            root.postOrder();
+        }
+    }
     public BinaryNode preOrderSearch(int no){
         BinaryNode resNode = null;
         if(root!=null){
@@ -38,6 +58,20 @@ class BinaryTree{
         }
         return resNode;
     }
+
+    public BinaryNode deleteNode(int no){
+        if(root==null ){
+            System.out.println("树为空！");
+            return null;
+        }
+        if(root.id == no){
+            BinaryNode node = root;
+            root = null;
+            return node;
+        }else{
+            return root.deleteNode(no);
+        }
+    }
 }
 class BinaryNode{
     int id;
@@ -50,9 +84,34 @@ class BinaryNode{
         this.id = id;
         this.name = name;
     }
-
+    public void preOrder(){
+        System.out.println(this);
+        if(left!=null){
+            left.preOrder();
+        }
+        if(right!=null){
+            right.preOrder();
+        }
+    }
+    public void infixOrder(){
+        if(left!=null){
+            left.infixOrder();
+        }
+        System.out.println(this);
+        if(right!=null){
+            right.infixOrder();
+        }
+    }
+    public void postOrder(){
+        if(left!=null){
+            left.postOrder();
+        }
+        if(right!=null){
+            right.postOrder();
+        }
+        System.out.println(this);
+    }
     public BinaryNode preOrderSearch(int no){
-        System.out.println("preOrderSearch");
         if(id == no){
             return this;
         }
@@ -102,6 +161,30 @@ class BinaryNode{
             resNode = this;
         }
         return resNode;
+    }
+
+    public BinaryNode deleteNode(int no) {
+        BinaryNode node = null;
+        if(left!=null && left.id == no){
+            node = this.left;
+            this.left = null;
+            return node;
+        }
+        if(right!=null && right.id == no){
+            node = this.right;
+            this.right = null;
+            return node;
+        }
+        if(left!=null){
+            node = left.deleteNode(no);
+        }
+        if(node!=null){
+            return node;
+        }
+        if(right!=null){
+            node  = right.deleteNode(no);
+        }
+        return node;
     }
 
     @Override
