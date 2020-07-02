@@ -2,22 +2,37 @@ package com.cxw.datastructure.tree;
 
 public class BinaryTreeDemo {
     public static void main(String[] args) {
+//        BinaryTree tree = new BinaryTree();
+//        BinaryNode nodo1 = new BinaryNode(1,"abc");
+//        BinaryNode nodo2 = new BinaryNode(2,"bcd");
+//        BinaryNode nodo3 = new BinaryNode(3,"cde");
+//        BinaryNode nodo4 = new BinaryNode(4,"edf");
+//        nodo1.left = nodo2;
+//        nodo1.right = nodo3;
+//        nodo3.right = nodo4;
+//        tree.root = nodo1;
+////        BinaryNode resNode = tree.preOrderSearch(3);
+////        System.out.println(resNode);
+//        tree.infixOrder();
+//        tree.deleteNode(nodo1.id);
+//        System.out.println("~~~~~~~");
+//        tree.infixOrder();
         BinaryTree tree = new BinaryTree();
-        BinaryNode nodo1 = new BinaryNode(1,"abc");
-        BinaryNode nodo2 = new BinaryNode(2,"bcd");
-        BinaryNode nodo3 = new BinaryNode(3,"cde");
-        BinaryNode nodo4 = new BinaryNode(4,"edf");
-        nodo1.left = nodo2;
-        nodo1.right = nodo3;
-        nodo3.right = nodo4;
-        tree.root = nodo1;
-//        BinaryNode resNode = tree.preOrderSearch(3);
-//        System.out.println(resNode);
+        BinaryNode node1 = new BinaryNode(1,"1");
+        BinaryNode node2 = new BinaryNode(2,"2");
+        BinaryNode node3 = new BinaryNode(3,"3");
+        BinaryNode node4 = new BinaryNode(4,"4");
+        BinaryNode node5 = new BinaryNode(5,"5");
+        BinaryNode node6 = new BinaryNode(6,"6");
+        BinaryNode node7 = new BinaryNode(7,"7");
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = node4;
+        node2.right = node5;
+        node3.left = node6;
+        node3.right = node7;
+        tree.root = node1;
         tree.infixOrder();
-        tree.deleteNode(nodo1.id);
-        System.out.println("~~~~~~~");
-        tree.infixOrder();
-
     }
 }
 class BinaryTree{
