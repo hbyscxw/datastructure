@@ -157,6 +157,7 @@ class Node{
             }
         }
         if(leftHeight()-rightHeight()>1){
+            //左子树的左子树的高度大于左子树的右子树高度，则需要左子树左旋
             if(left!=null&&left.leftHeight()<left.rightHeight()){
                 left.leftRotate();
             }
