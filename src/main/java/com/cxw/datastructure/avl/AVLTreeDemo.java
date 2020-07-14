@@ -157,8 +157,14 @@ class Node{
             }
         }
         if(leftHeight()-rightHeight()>1){
+            if(left!=null&&left.leftHeight()<left.rightHeight()){
+                left.leftRotate();
+            }
             rightRotate();
         }else if(rightHeight()-leftHeight()>1){
+            if(right!=null&&right.rightHeight()<right.leftHeight()){
+                right.rightRotate();
+            }
             leftRotate();
         }
     }
