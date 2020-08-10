@@ -16,7 +16,7 @@ public class HorseChessBoardAlgorithm {
     private boolean[][] visited;
     private boolean finished;
     public static void main(String[] args) {
-        HorseChessBoardAlgorithm horseChessBoard = new HorseChessBoardAlgorithm(6);
+        HorseChessBoardAlgorithm horseChessBoard = new HorseChessBoardAlgorithm(8);
         horseChessBoard.horseChessboard(1,0,1);
         horseChessBoard.print();
     }
@@ -77,6 +77,7 @@ public class HorseChessBoardAlgorithm {
         chess[x][y] = step;
         visited[x][y] = true;
         List<Point> ps = next(cur);
+        sort(ps);
         while(!ps.isEmpty()){
             Point p = ps.remove(0);
             //如果没有访问，就继续进行
@@ -92,6 +93,21 @@ public class HorseChessBoardAlgorithm {
         }else{
             finished = true;
         }
+    }
+
+    private void sort(List<Point> ps) {
+        ps.sort((o1,o2)->{
+            int count1 = next(o1).size();
+            int count2 = next(o2).size();
+//            if(count1<count2){
+//                return -1;
+//            }else if(count1>count2){
+//                return 1;
+//            }else{
+//                return 0;
+//            }
+            return Integer.compare(count1,count2);
+        });
     }
 
     public void print() {
