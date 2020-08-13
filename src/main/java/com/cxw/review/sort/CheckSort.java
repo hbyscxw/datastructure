@@ -12,6 +12,10 @@ public class CheckSort {
     public static void main(String[] args) {
         checkSort(100000,20,100000);
     }
+    private static void mySort(int[] ary) {
+        SortDemo.shellSort(ary);
+    }
+
     private static void checkSort(int max,int length,int time){
         System.out.println(check(max, length, time));
     }
@@ -31,9 +35,6 @@ public class CheckSort {
             }
         }
         return true;
-    }
-    private static void mySort(int[] ary) {
-        SortDemo.insertSort(ary);
     }
 
     private static void rightSort(int[] ary){

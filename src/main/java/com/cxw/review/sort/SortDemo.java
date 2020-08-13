@@ -9,8 +9,8 @@ import java.util.Arrays;
  */
 public class SortDemo {
     public static void main(String[] args) {
-        int[] ary = {1,20,10};
-        insertSort(ary);
+        int[] ary = {1,2,5,4,8,20,10};
+        shellSort(ary);
         System.out.println(Arrays.toString(ary));
     }
     public static void bubbleSort(int[] ary){
@@ -45,6 +45,27 @@ public class SortDemo {
                 ary[j+1] = ary[j];
             }
             ary[j+1] = temp;
+        }
+    }
+
+    public static void shellSort(int[] ary){
+        for (int k = ary.length/2; k > 0 ; k/=2) {
+            for (int i = k; i < ary.length; i+=k) {
+                int temp = ary[i];
+                int j = 0;
+                boolean m = false;
+                for (j = i-k; j >=0 ; j-=k) {
+                    if(ary[j]>temp){
+                        ary[j+k] = ary[j];
+                        m = true;
+                    }else{
+                        break;
+                    }
+                }
+                if(m) {
+                    ary[j + k] = temp;
+                }
+            }
         }
     }
 
