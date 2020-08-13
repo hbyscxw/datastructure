@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class SortDemo {
     public static void main(String[] args) {
         int[] ary = {1,20,10};
-        selectionSort(ary);
+        insertSort(ary);
         System.out.println(Arrays.toString(ary));
     }
     public static void bubbleSort(int[] ary){
@@ -39,14 +39,49 @@ public class SortDemo {
 
     public static void insertSort(int[] ary){
         for (int i = 1; i < ary.length; i++) {
-            int index = i-1;
-            int insertValue = ary[i];
-            while(index>=0&&ary[index]>insertValue){
-                ary[index+1] = ary[index];
-                index--;
+            int temp = ary[i];
+            int j = 0;
+            for (j = i-1; j >=0 && ary[j]>temp; j--) {
+                ary[j+1] = ary[j];
             }
-            ary[index+1] = insertValue;
+            ary[j+1] = temp;
         }
+    }
+
+    public static void mergeSort(int[] ary){
+        doMergeSort(ary,0,ary.length-1);
+    }
+
+    private static void doMergeSort(int[] ary,int left,int right){
+        if(left == right){
+            return;
+        }
+        int mid = (left+right)/2;
+        doMergeSort(ary,left,mid);
+        doMergeSort(ary,mid+1,right);
+        merge(ary,left,mid,right);
+    }
+
+    private static void merge(int[] ary, int left,int mid, int right) {
+        int[] temp = new int[right-left+1];
+        int tIndex = 0;
+        int l = left;
+        int r = mid+1;
+        while(l<=mid&&r<=right){
+            if(ary[l]<=ary[r]){
+                temp[tIndex++] = ary[l++];
+            }else{
+                temp[tIndex++] = ary[r++];
+            }
+        }
+        while(l<=mid){
+            temp[tIndex++] = ary[l++];
+        }
+        while(r<=right){
+            temp[tIndex++] = ary[r++];
+        }
+        //copy回原数组
+        System.arraycopy(temp,0,ary,left,temp.length);
     }
 
     public static void swap(int[] ary,int i,int j){
