@@ -9,8 +9,8 @@ import java.util.Arrays;
  */
 public class SortDemo {
     public static void main(String[] args) {
-        int[] ary = {1,2,5,4,8,20,10};
-        shellSort(ary);
+        int[] ary = {84724, 2978, 43851, 17502, 71312, 37356, 23106, 67021, 75096, 27942};
+        quickSort(ary);
         System.out.println(Arrays.toString(ary));
     }
     public static void bubbleSort(int[] ary){
@@ -104,6 +104,68 @@ public class SortDemo {
         //copy回原数组
         System.arraycopy(temp,0,ary,left,temp.length);
     }
+
+    public static void quickSort(int[] ary){
+        doQuickSort(ary,0,ary.length-1);
+
+    }
+
+    private static void doQuickSort(int[] ary, int left, int right) {
+//        if(left >= right){
+//            return;
+//        }
+//        int mid = left+((right-left)>>1);
+//        int l = left;
+//        int r = right;
+//        int temp = ary[mid];
+//        while(l<r){
+//            while (ary[l] < temp) {
+//                l++;
+//            }
+//            while (ary[r] > temp) {
+//                r--;
+//            }
+//            if(ary[l]>ary[r]){
+//                swap(ary,l,r);
+//            }
+//        }
+//        doQuickSort(ary,left,r-1);
+//        doQuickSort(ary,r+1,right);
+        if(left > right) {
+            return;
+        }
+        // base中存放基准数
+        int base = ary[left];
+        int i = left, j = right;
+        while(i != j) {
+            // 顺序很重要，先从右边开始往左找，直到找到比base值小的数
+            while(ary[j] >= base && i < j) {
+                j--;
+            }
+
+            // 再从左往右边找，直到找到比base值大的数
+            while(ary[i] <= base && i < j) {
+                i++;
+            }
+
+            // 上面的循环结束表示找到了位置或者(i>=j)了，交换两个数在数组中的位置
+            if(i < j) {
+                int tmp = ary[i];
+                ary[i] = ary[j];
+                ary[j] = tmp;
+            }
+        }
+
+        // 将基准数放到中间的位置（基准数归位）
+        ary[left] = ary[i];
+        ary[i] = base;
+
+        // 递归，继续向基准的左右两边执行和上面同样的操作
+        // i的索引处为上面已确定好的基准值的位置，无需再处理
+        doQuickSort(ary, left, i - 1);
+        doQuickSort(ary, i + 1, right);
+    }
+
 
     public static void swap(int[] ary,int i,int j){
         ary[i] = ary[i] ^ ary[j];

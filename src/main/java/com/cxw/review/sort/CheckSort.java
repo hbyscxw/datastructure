@@ -2,6 +2,7 @@ package com.cxw.review.sort;
 
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
+import com.cxw.datastructure.sort.SortDemo;
 
 /**
  * @author chengxuwei
@@ -10,10 +11,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CheckSort {
     public static void main(String[] args) {
-        checkSort(100000,20,100000);
+        checkSort(100000,10,100000);
     }
     private static void mySort(int[] ary) {
-        SortDemo.shellSort(ary);
+        SortDemo.quickSort(ary);
     }
 
     private static void checkSort(int max,int length,int time){
@@ -31,6 +32,7 @@ public class CheckSort {
             mySort(cAry2);
             boolean f = compareAry(cAry,cAry2);
             if(!f){
+                System.out.println("出错的例子："+Arrays.toString(ary)+Arrays.toString(cAry2));
                 return false;
             }
         }
