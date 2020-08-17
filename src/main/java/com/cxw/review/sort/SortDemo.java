@@ -106,7 +106,7 @@ public class SortDemo {
     }
 
     public static void quickSort(int[] ary){
-        doQuickSort(ary,0,ary.length-1);
+        doQuickSort2(ary,0,ary.length-1);
 
     }
 
@@ -164,6 +164,32 @@ public class SortDemo {
         // i的索引处为上面已确定好的基准值的位置，无需再处理
         doQuickSort(ary, left, i - 1);
         doQuickSort(ary, i + 1, right);
+    }
+
+    public static void doQuickSort2(int[] ary,int start,int end){
+        if(start>=end){
+            return;
+        }
+        int i = start;
+        int j = end;
+        int temp = ary[start];
+        while(i<j){
+            while (temp<=ary[j]&&i<j){
+                j--;
+            }
+            while (temp>=ary[i]&&i<j){
+                i++;
+            }
+            if(i<j) {
+                swap(ary, i, j);
+            }
+        }
+        if(start!=i){
+            ary[start] = ary[i];
+            ary[i] = temp;
+        }
+        doQuickSort2(ary,start,j-1);
+        doQuickSort2(ary,j+1,end);
     }
 
 

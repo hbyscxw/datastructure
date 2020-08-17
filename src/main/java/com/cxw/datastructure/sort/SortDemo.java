@@ -9,8 +9,9 @@ import java.util.Arrays;
  */
 public class SortDemo {
     public static void main(String[] args) {
-        int[] ary = {10, 1, 4, 5, 100, 50, 30, 20, 6, 7, 8};
-        radixSort(ary);
+//        int[] ary = {10, 1, 4, 5, 100, 50, 30, 20, 6, 7, 8};
+        int[] ary = {10,9,8,7};
+        quickSort(ary);
         System.out.println(Arrays.toString(ary));
     }
 
@@ -149,30 +150,31 @@ public class SortDemo {
     public static void quickSort(int[] ary) {
         doQuickSort2(ary, 0, ary.length - 1);
     }
-    //TODO wrong
     private static void doQuickSort2(int[] ary, int left, int right) {
-        if (left > right) {
+        if (left >= right) {
             return;
         }
         int l = left;
         int r = right;
         int minValue = ary[l];
         while (l < r) {
-            while (ary[r] > minValue && l < r) {
+            while (ary[r] >= minValue && l < r) {
                 r--;
             }
-            while (ary[l] < minValue && l < r) {
+            while (ary[l] <= minValue && l < r) {
                 l++;
             }
             if (l < r) {
                 swap(ary, l, r);
             }
         }
-        // 将基准数放到中间的位置（基准数归位）
-        ary[left] = ary[l];
-        ary[l] = minValue;
-        doQuickSort2(ary, left, r - 1);
-        doQuickSort2(ary, r + 1, right);
+        if(l!=left) {
+            // 将基准数放到中间的位置（基准数归位）
+            ary[left] = ary[l];
+            ary[l] = minValue;
+        }
+        doQuickSort2(ary, left, l - 1);
+        doQuickSort2(ary, l + 1, right);
     }
 
 
