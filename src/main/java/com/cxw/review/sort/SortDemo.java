@@ -1,6 +1,7 @@
 package com.cxw.review.sort;
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author chengxuwei
@@ -106,7 +107,7 @@ public class SortDemo {
     }
 
     public static void quickSort(int[] ary){
-        doQuickSort2(ary,0,ary.length-1);
+        doQuickSort3(ary,0,ary.length-1);
 
     }
 
@@ -192,10 +193,24 @@ public class SortDemo {
         doQuickSort2(ary,j+1,end);
     }
 
+    public static void doQuickSort3(int[] ary,int start,int end){
+        if(start>=end){
+            return;
+        }
+        int r = ThreadLocalRandom.current().nextInt(end-start+1)+start;
+        int[] numAry = NetherlandsQuestion.partition(ary,start,end,ary[r]);
+        doQuickSort3(ary,start,numAry[0]-1);
+        doQuickSort3(ary,numAry[1]+1,end);
+
+    }
 
     public static void swap(int[] ary,int i,int j){
+        if(i==j){
+            return;
+        }
         ary[i] = ary[i] ^ ary[j];
         ary[j] = ary[i] ^ ary[j];
         ary[i] = ary[i] ^ ary[j];
     }
+
 }
