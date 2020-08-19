@@ -10,8 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class SortDemo {
     public static void main(String[] args) {
-        int[] ary = {84724, 2978, 43851, 17502, 71312, 37356, 23106, 67021, 75096, 27942};
-        quickSort(ary);
+        int[] ary = {72498, 97809, 10411, 91457, 10293, 32701, 3322, 5710, 46107, 94417};
+        heapSort(ary);
         System.out.println(Arrays.toString(ary));
     }
     public static void bubbleSort(int[] ary){
@@ -202,6 +202,43 @@ public class SortDemo {
         doQuickSort3(ary,start,numAry[0]-1);
         doQuickSort3(ary,numAry[1]+1,end);
 
+    }
+
+    public static void heapSort(int[] ary){
+        //1.形成大根堆
+        for (int i = 0; i < ary.length; i++) {
+            doHeapInsert(ary,i);
+        }
+        for (int i = ary.length-1; i >0 ; i--) {
+            //2.将第一个元素（最大）和最后一个元素交换
+            swap(ary,0,i);
+            //3.调整剩下的元素为大根堆
+            doHeapChange(ary,0,i-1);
+        }
+
+    }
+
+    private static void doHeapChange(int[] ary, int l, int r) {
+        int index = l;
+        while((index*2+1)<=r){
+            int child1 = index*2+1;
+            int child2 = index*2+2;
+            int bigger = (child2>r||Math.max(ary[child1],ary[child2])==ary[child1])?child1:child2;
+            bigger = (Math.max(ary[bigger],ary[index])==ary[index])?index:bigger;
+            if(index==bigger){
+                break;
+            }
+            swap(ary,index,bigger);
+            index = bigger;
+        }
+    }
+
+    private static void doHeapInsert(int[] ary, int i) {
+        int index = i;
+        while(ary[(index-1)/2]<ary[index]){
+           swap(ary,index,(index-1)/2);
+           index = (index-1)/2;
+        }
     }
 
     public static void swap(int[] ary,int i,int j){
