@@ -1,5 +1,7 @@
 package com.cxw.leetcodecourse.petqueue;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -11,8 +13,8 @@ import java.util.concurrent.LinkedBlockingQueue;
  public class Dog extends Pet { public Dog() { super ("dog"); } }
  public class Cat extends Pet { public Cat() { super("cat"); } }
  实现一种狗猫队列的结构，要求如下:用户可以调用add方 法将cat类或dog类的
- 实例放入队列中;用户可以调用pollAII方法， 将队列中所有的实例按照进队列
- 的先后顺序依次弹出;用户可以调用pol IDog方法，将队列中dog类的实例按照
+ 实例放入队列中;用户可以调用pollAll方法， 将队列中所有的实例按照进队列
+ 的先后顺序依次弹出;用户可以调用pollDog方法，将队列中dog类的实例按照
  进队列的先后顺序依次弹出;用户可以调用pol ICat方法，将队列中cat类的实
  例按照进队列的先后顺序依次弹出;用户可以调用 isEmpty方法，检查队列中是
  否还有dog或cat的实例;用户可以调用 isDogEmpty方法，检查队列中是否有dog
@@ -65,5 +67,13 @@ public class PetQueue {
         }else{
             return null;
         }
+    }
+    public List<Pet> pollAll(){
+        List<Pet> list = new ArrayList<>();
+        Pet p = null;
+        while(p!=poll()){
+            list.add(p);
+        }
+        return list;
     }
 }
