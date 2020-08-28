@@ -1,5 +1,6 @@
 package com.cxw.leetcodecourse.linked;
 
+import java.util.Objects;
 import java.util.Stack;
 
 /**
@@ -73,5 +74,18 @@ class Node{
     public Node(int value, Node next) {
         this.value = value;
         this.next = next;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){ return true;}
+        if (o == null || getClass() != o.getClass()){ return false;}
+        Node node = (Node) o;
+        return value == node.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
