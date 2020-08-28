@@ -1,4 +1,4 @@
-package com.cxw.leetcodecourse;
+package com.cxw.leetcodecourse.linked;
 
 import java.util.Stack;
 
@@ -18,29 +18,28 @@ public class CheckPalindrome {
     }
 
     private static boolean checkPalindromeHalfStack(Node node) {
+        if(node==null||node.next==null){
+            return true;
+        }
         Stack<Integer> stack  =new Stack<>();
         Node fastNode = node;
         Node slowNode = node;
-        while(fastNode!=null){
-            if(fastNode.next!=null&&fastNode.next.next!=null){
-                fastNode = fastNode.next.next;
-                stack.add(slowNode.value);
-            }else if(fastNode.next!=null){
-                fastNode = fastNode.next;
-                stack.add(slowNode.value);
-            }else{
-                fastNode = null;
-                stack.add(slowNode.value);
-            }
+        while(fastNode.next!=null&&fastNode.next.next!=null){
+            fastNode = fastNode.next.next;
+            slowNode = slowNode.next;
+        }
+        while(slowNode!=null){
+            stack.push(slowNode.value);
             slowNode = slowNode.next;
         }
         Integer sv = null;
-        while((sv = stack.pop())!=null){
-            int value = slowNode.value;
+        while(!stack.isEmpty()){
+            sv = stack.pop();
+            int value = node.value;
             if(sv != value){
                 return false;
             }
-            slowNode = slowNode.next;
+            node = node.next;
         }
         return true;
     }

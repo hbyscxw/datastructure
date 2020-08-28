@@ -1,4 +1,4 @@
-package com.cxw.leetcodecourse;
+package com.cxw.leetcodecourse.linked;
 
 import java.util.LinkedList;
 
