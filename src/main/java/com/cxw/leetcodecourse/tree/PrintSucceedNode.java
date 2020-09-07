@@ -43,19 +43,19 @@ public class PrintSucceedNode {
             //右节点不为空，返回右节点的最左子节点
             return getLastLeftNode(node.right);
         }
-        return getParentLeftNode(node.parent);
+        return getParentLeftNode(node);
     }
 
     private static ParentSucceedNode getParentLeftNode(ParentSucceedNode node) {
         if(node==null){
             return null;
         }
-        ParentSucceedNode n = null;
-        while(node!=null&&node.left!=null){
-            n = node;
-            node = node.parent;
+        ParentSucceedNode parent = node.parent;
+        while(parent!=null&&parent.left!=node){
+            node = parent;
+            parent = node.parent;
         }
-        return n;
+        return parent;
     }
 
     private static ParentSucceedNode getLastLeftNode(ParentSucceedNode node) {
