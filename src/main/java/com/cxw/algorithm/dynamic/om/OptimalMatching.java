@@ -29,10 +29,25 @@ public class OptimalMatching {
                 if(!has(orderDrivers,driver)){//包含则可以匹配
                     v[i][j] = v[i-1][j];
                 }else{
-                    //TODO ...
+                    //先比较订单金额大小，再比较eda
+                    List<MatchedOrderDriver> matchedOrderDrivers1 = v[i - i][j];
+                    List<MatchedOrderDriver> matchedOrderDrivers2 = v[i][j-1];
+                    List<MatchedOrderDriver> maxMatchedOrderDrivers = max(matchedOrderDrivers1,matchedOrderDrivers2);
+                    List<MatchedOrderDriver> moreMaxMatchedOrderDrivers = max(maxMatchedOrderDrivers,order,driver);
+                    v[i][j] = moreMaxMatchedOrderDrivers;
                 }
             }
         }
+        return null;
+    }
+
+    private List<MatchedOrderDriver> max(List<MatchedOrderDriver> maxMatchedOrderDrivers, Order order, Driver driver) {
+        //TODO 比较当前order 和driver 与原有 金额大小 eda
+        return null;
+    }
+
+    private List<MatchedOrderDriver> max(List<MatchedOrderDriver> matchedOrderDrivers1, List<MatchedOrderDriver> matchedOrderDrivers2) {
+        //TODO 先比较订单金额大小，在比较eda
         return null;
     }
 
