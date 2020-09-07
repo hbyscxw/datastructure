@@ -1,4 +1,4 @@
-package com.cxw.leetcode;
+package com.cxw.leetcode.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
