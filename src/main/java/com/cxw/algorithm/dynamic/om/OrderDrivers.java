@@ -1,5 +1,7 @@
 package com.cxw.algorithm.dynamic.om;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,6 +12,20 @@ import java.util.List;
 public class OrderDrivers {
     private Order order;
     private List<Driver> drivers;
+
+    public OrderDrivers() {
+    }
+
+    public OrderDrivers(Order order, Driver ... driverAry) {
+        this.order = order;
+        this.drivers = new ArrayList<>();
+        Collections.addAll(drivers,driverAry);
+    }
+
+    public OrderDrivers(Order order, List<Driver> drivers) {
+        this.order = order;
+        this.drivers = drivers;
+    }
 
     public Order getOrder() {
         return order;
