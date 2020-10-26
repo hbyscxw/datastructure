@@ -13,7 +13,8 @@ public class PolandNotation {
     public static void main(String[] args) {
         //(5+4)*3-4+1
 //        String expStr = "5 4 + 3 * 4 - 1 +";
-        String infixExp = "7 - 3 * ( 3 - 3 ) + 4";
+//        String infixExp = "7 - 3 * ( 3 - 3 ) + 4";
+        String infixExp = "43 * ( 2 + 4 ) + 2 * 32 / ( 65 - 1 )";
         System.out.println(infixExp);
         List<String> suffixExp = convertSuffixExp(infixExp);
         System.out.println(suffixExp);
@@ -43,7 +44,7 @@ public class PolandNotation {
         String[] expAry = infixExp.split(" ");
         for(String exp : expAry){
             //如果是数字，直接加入s2
-            if(exp.matches("\\d")){
+            if(exp.matches("\\d+")){
                 s2.add(exp);
             }else if(exp.equals("(")){
                 //左括号压入s1

@@ -54,7 +54,8 @@ public class Calculator {
                     }
                 }
             }
-            //让 index + 1, 并判断是否扫描到 expression 最后. index++;
+            //让 index + 1, 并判断是否扫描到 expression 最后.
+            index++;
             if (index >= expression.length()) {
                 break;
             }
@@ -70,11 +71,11 @@ public class Calculator {
             oper = operStack.pop();
             res = numStack.cal(num1, num2, oper);
 
-            numStack.push(res);//入栈 }
-            //将数栈的最后数，pop 出，就是结果
-            int res2 = numStack.pop();
-            System.out.printf("表达式 %s = %d", expression, res2);
+            numStack.push(res);//入栈
         }
+        //将数栈的最后数，pop 出，就是结果
+        int res2 = numStack.pop();
+        System.out.printf("表达式 %s = %d", expression, res2);
     }
 
     //先创建一个栈,直接使用前面创建好 //定义一个 ArrayStack2 表示栈, 需要扩展功能
