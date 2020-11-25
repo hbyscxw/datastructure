@@ -1,5 +1,8 @@
 package com.cxw.algorithm.kmp;
 
+/**
+ * 字符串暴力匹配
+ */
 public class ViolenceMatch {
     public static void main(String[] args) {
         String str1 = "12314123";
