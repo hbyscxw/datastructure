@@ -14,7 +14,8 @@ public class CheckSort {
         checkSort(100000,10,100000);
     }
     private static void mySort(int[] ary) {
-        SortDemo.heapSort(ary);
+        //SortDemo.heapSort(ary);
+        SortReview.shellInsert(ary);
     }
 
     private static void checkSort(int max,int length,int time){
