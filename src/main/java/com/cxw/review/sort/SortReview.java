@@ -1,6 +1,8 @@
 package com.cxw.review.sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -12,8 +14,44 @@ public class SortReview {
     public static void main(String[] args) {
         int[] ary = {1,5,2,3,8,7};
         //quickSort(ary, 0,ary.length-1);
-        insert(ary);
+        radixSort(ary);
         System.out.println(Arrays.toString(ary));
+    }
+
+    public static void radixSort(int[] ary){
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < ary.length; i++) {
+            if(ary[i]>max){
+                max = ary[i];
+            }
+        }
+        int len = String.valueOf(max).length();
+        for (int i = 0; i < len; i++) {
+            Object[] objects = new Object[10];
+            for (int j = 0; j < ary.length; j++) {
+                int num = (ary[j]/(int)Math.pow(10,i))%10;
+                if(objects[num]==null){
+                    objects[num] = new ArrayList<Integer>();
+                }
+                List<Integer> list = (List<Integer>) objects[num];
+                list.add(ary[j]);
+            }
+            List<Integer> list = getNum(objects);
+            for (int j = 0; j < list.size(); j++) {
+                ary[j] = list.get(j);
+            }
+        }
+    }
+
+    private static List<Integer> getNum(Object[] objects) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < objects.length; i++) {
+            if(objects[i]==null){
+                continue;
+            }
+            list.addAll((List<Integer>)objects[i]);
+        }
+        return list;
     }
 
     public static void quickSort(int[] ary, int start, int end) {
