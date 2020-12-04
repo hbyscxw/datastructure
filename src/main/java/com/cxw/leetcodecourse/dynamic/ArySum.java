@@ -4,12 +4,12 @@ package com.cxw.leetcodecourse.dynamic;
  * @author chengxuwei
  * @date 2020-09-18 10:07
  * @description
- * 给你一-个数组arr,和一-个整数aim。如果可以任意选择arr中的
+ * 给你一个数组arr,和一个整数aim。如果可以任意选择arr中的
  * 数字，能不能累加得到aim,返回true或者false
  */
 public class ArySum {
     public static void main(String[] args) {
-        int[] ary = {5,3,8};
+        int[] ary = {5,3,8,5,5};
         int aim = 18;
         boolean f = cal(ary,0,0,aim);
         System.out.println(f);
