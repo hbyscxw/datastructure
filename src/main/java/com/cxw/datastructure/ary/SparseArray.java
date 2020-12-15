@@ -3,7 +3,7 @@ package com.cxw.datastructure.ary;
 /**
  * @author chengxuwei
  * @date 2020-05-28 16:01
- * @description
+ * @description 压缩成稀疏数组
  */
 public class SparseArray {
 
