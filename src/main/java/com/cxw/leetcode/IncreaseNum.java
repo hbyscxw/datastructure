@@ -59,8 +59,6 @@ public class IncreaseNum {
                     char ch = str.charAt(i);
                     int numI = ((int) ch - (int) ('0')) - 1;
                     chars[j] = (char) (numI + '0');
-                }else{
-                    chars[j] = '9';
                 }
             }else{
                 chars[j] = '9';
