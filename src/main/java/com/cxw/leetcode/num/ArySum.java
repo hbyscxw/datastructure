@@ -1,4 +1,4 @@
-package com.cxw.leetcode;
+package com.cxw.leetcode.num;
 
 /**
  * @author chengxuwei
