@@ -1,9 +1,11 @@
-package com.cxw.leetcode.list;
+package com.cxw.labuladong.recursive;
 
 /**
  * @author chengxuwei
  * @date 2020-11-13 10:46
  * @description 单链表翻转
+ * 递归反转链表的一部分
+ * https://labuladong.gitbook.io/algo/shu-ju-jie-gou-xi-lie/shou-ba-shou-shua-lian-biao-ti-mu-xun-lian-di-gui-si-wei/di-gui-fan-zhuan-lian-biao-de-yi-bu-fen
  */
 public class LinkedListReversal {
     public static void main(String[] args) {
@@ -15,41 +17,8 @@ public class LinkedListReversal {
         first.next = second;
         second.next = third;
         printList(head);
-        ListNode newHead = reversalN(head,2);
+        ListNode newHead = reverseBetween(head,2,3);
         printList(newHead);
-    }
-    /**
-     * 翻转链表迭代
-     * @param head
-     * @return
-     */
-    private static ListNode reversal(ListNode head) {
-        ListNode pre = null;
-        ListNode next;
-        while(head!=null){
-            next = head.next;
-            head.next = pre;
-            pre = head;
-            head = next;
-        }
-        return pre;
-    }
-
-    /**
-     * 翻转链表递归
-     * @param head
-     * @return
-     */
-    private static ListNode reversal2(ListNode head) {
-        if(head.next==null){
-            return head;
-        }else{
-            ListNode next = head.next;
-            ListNode last = reversal2(head.next);
-            next.next = head;
-            head.next = null;
-            return last;
-        }
     }
     /**
      * 翻转n个元素链表 递归
@@ -57,7 +26,7 @@ public class LinkedListReversal {
      * @return
      */
     static ListNode s = null;
-    private static ListNode reversalN(ListNode head,int n) {
+    private static ListNode reversalN(ListNode head, int n) {
         if(n==1){
             s = head.next;
             return head;
@@ -85,13 +54,14 @@ public class LinkedListReversal {
     }
 
 
-    private static void printList(ListNode head) {
+    public static void printList(ListNode head) {
         while(head!=null){
             System.out.println(head.val);
             head = head.next;
         }
     }
 }
+
 class ListNode {
     int val;
     ListNode next = null;
