@@ -16,7 +16,7 @@ public class LinkedListPalindrome {
         head.next = first;
         first.next = second;
         //second.next = third;
-        boolean palindrome = isPalindrome2(head);
+        boolean palindrome = isPalindrome3(head);
         System.out.println(palindrome);
     }
 
@@ -53,7 +53,7 @@ public class LinkedListPalindrome {
     }
 
     /**
-     * 字符串
+     * 字符串双指针
      * @param head
      * @return
      */
@@ -77,5 +77,45 @@ public class LinkedListPalindrome {
             right--;
         }
         return true;
+    }
+
+    /**
+     * 快慢双指针
+     * @param head
+     * @return
+     */
+    public static boolean isPalindrome3(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast!=null&&fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if(fast == null){
+            //偶数链
+        }else{
+            //奇数链  在进一步
+            slow = slow.next;
+        }
+        //翻转链
+        ListNode right = reverse(slow);
+        while(right!=null){
+            if(head.val != right.val){
+                return false;
+            }
+            head = head.next;
+            right = right.next;
+        }
+        return true;
+    }
+
+    public static ListNode reverse(ListNode head) {
+        if(head.next==null){
+            return head;
+        }
+        ListNode last = reverse(head.next);
+        head.next.next = head;
+        head.next = null;
+        return last;
     }
 }
