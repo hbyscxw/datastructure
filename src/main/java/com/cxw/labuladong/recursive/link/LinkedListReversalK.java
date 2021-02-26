@@ -1,4 +1,4 @@
-package com.cxw.labuladong.recursive;
+package com.cxw.labuladong.recursive.link;
 
 /**
  * @author chengxuwei
