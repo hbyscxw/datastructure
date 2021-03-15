@@ -1,6 +1,9 @@
 package com.cxw.leetcode.interview;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author chengxuwei
  * @date 2020-12-16 10:56
@@ -48,9 +51,11 @@ package com.cxw.leetcode.interview;
  */
 public class EggDrop {
     public static void main(String[] args) {
-        int N = 6;//N 层楼的建筑
-        int K = 6;//K 个鸡蛋
+        int N = 100;//N 层楼的建筑
+        int K = 2;//K 个鸡蛋
         int res = superEggDrop(K,N);
+        System.out.println(res);
+        res = superEggDrop4(K,N);
         System.out.println(res);
     }
 
@@ -91,4 +96,87 @@ public class EggDrop {
         return record[k][n];
     }
 
+    /**
+     * 暴力求解
+     * @param k
+     * @param n
+     * @return
+     */
+    public static int superEggDrop2(int k, int n) {
+        if(k==1){
+            return n;
+        }
+        if(n==0){
+            return 0;
+        }
+        int res = Integer.MAX_VALUE;
+        for (int i = 1; i <= n; i++) {
+            //碎了
+            int r1 = superEggDrop2(k-1,i-1);
+            //没碎
+            int r2 = superEggDrop2(k,n-i);
+             // 最坏情况下的最少扔鸡蛋次数
+            res = Math.min(res,Math.max(r1,r2)+1);
+        }
+        return res;
+    }
+
+    /**
+     * 备忘录求解
+     * @param k
+     * @param n
+     * @return
+     */
+    static Map<String,Integer> map = new HashMap<>();
+    public static int superEggDrop3(int k, int n) {
+        if(k==1){
+            return n;
+        }
+        if(n==0){
+            return 0;
+        }
+        if(map.get(k+"_"+n)!=null){
+            return map.get(k+"_"+n);
+        }
+        int res = Integer.MAX_VALUE;
+        for (int i = 1; i <= n; i++) {
+            //碎了
+            int r1 = superEggDrop3(k-1,i-1);
+            //没碎
+            int r2 = superEggDrop3(k,n-i);
+            // 最坏情况下的最少扔鸡蛋次数
+            res = Math.min(res,Math.max(r1,r2)+1);
+        }
+        map.put(k+"_"+n,res);
+        return res;
+    }
+
+    /**
+     * 通用dp求解
+     * @param k
+     * @param n
+     * @return
+     */
+    public static int superEggDrop4(int k, int n) {
+        if(k==1){
+            return n;
+        }
+        if(n==0){
+            return 0;
+        }
+        int[][] dp = new int[k+1][n+1];
+        for (int i = 1; i <= n; i++) {
+            dp[1][n] = i;
+        }
+        return dp4(dp,k,n);
+    }
+
+    private static int dp4(int[][] dp, int k, int n) {
+        for (int i = 1; i <= k; i++) {
+            for (int j = 1; j <= n; j++) {
+                dp[i][j] = Math.max(dp[i-1][j-1],dp[i][n-j])+1;
+            }
+        }
+        return dp[k][n];
+    }
 }
