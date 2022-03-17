@@ -15,6 +15,7 @@ public class SortDemo {
         System.out.println(Arrays.toString(ary));
     }
 
+    //基数排序
     private static void radixSort(int[] ary) {
         //取最大位
         int max = ary[0];
@@ -103,6 +104,7 @@ public class SortDemo {
         */
     }
 
+    //归并排序
     private static void mergeSort(int[] ary) {
         doMergeSort(ary, 0, ary.length - 1);
     }
@@ -147,6 +149,7 @@ public class SortDemo {
         System.arraycopy(temp, 0, ary, start, temp.length);
     }
 
+    //快速排序
     public static void quickSort(int[] ary) {
         doQuickSort2(ary, 0, ary.length - 1);
     }
@@ -216,6 +219,7 @@ public class SortDemo {
 
     }
 
+    //希尔排序
     private static void shellChangeSort(int[] ary) {
         /*
         //第一轮
@@ -247,6 +251,7 @@ public class SortDemo {
         }
     }
 
+    //希尔排序2
     private static void shellInsertSort(int[] ary) {
         for (int step = ary.length / 2; step > 0; step /= 2) {
             for (int i = step; i < ary.length; i++) {
@@ -287,6 +292,7 @@ public class SortDemo {
 //        }
     }
 
+    //插入排序
     private static void insertSort(int[] ary) {
         for (int i = 1; i < ary.length; i++) {
             int insertValue = ary[i];
@@ -308,8 +314,8 @@ public class SortDemo {
     }
 
     /**
+     * 插入排序2
      * 算法时间复杂度
-     *
      * @param ary
      */
     public static void insertSort2(int[] ary) {
@@ -327,8 +333,8 @@ public class SortDemo {
     }
 
     /**
+     * 选择排序
      * 算法时间复杂度 O(n^2) 交换过程比冒泡少，比冒泡快
-     *
      * @param ary
      */
     public static void selectSort(int[] ary) {
@@ -349,8 +355,8 @@ public class SortDemo {
     }
 
     /**
+     * 冒泡排序
      * 算法时间复杂度 O(n^2)
-     *
      * @param ary
      */
     private static void bubbleSort(int[] ary) {

@@ -12,7 +12,7 @@ package com.cxw.leetcodecourse.array;
 public class ArraySearch {
     public static void main(String[] args) {
         int[][] ary = {{1,3,5,6},{2,5,7,9},{4,6,8,10}};
-        searchNum(ary,10);
+        searchNum(ary,7);
     }
 
     private static void searchNum(int[][] ary, int target) {

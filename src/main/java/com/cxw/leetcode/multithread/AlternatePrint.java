@@ -1,6 +1,5 @@
 package com.cxw.leetcode.multithread;
 
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
@@ -26,9 +25,9 @@ public class AlternatePrint {
     static Condition condition3 = lock.newCondition();
     public static void main(String[] args) {
 
-//        lockSupport();
+        lockSupport(); //先调用unpack  再调用pack也不会阻塞 原理 https://www.cnblogs.com/takumicx/p/9328459.html#22-%E5%85%88%E5%94%A4%E9%86%92%E7%BA%BF%E7%A8%8B%E4%B8%A4%E6%AC%A1%E5%86%8D%E9%98%BB%E5%A1%9E%E4%B8%A4%E6%AC%A1%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88
 //        waitNotify();
-        reentrantLock();
+//        reentrantLock();
 
     }
 
@@ -170,6 +169,11 @@ public class AlternatePrint {
             }
         });
         t2 = new Thread(()->{
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             char[] chars = s2.toCharArray();
             for (char a : chars) {
                 LockSupport.park();
