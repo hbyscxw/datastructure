@@ -15,7 +15,7 @@ public class SearchDemo {
         System.out.println(fbcSearch(ary,3));
     }
 
-
+    //斐波纳契 数列
     public static int[] fibonacciArray(int maxSize){
         int[] fbc = new int[maxSize];
         fbc[0] = 1;
