@@ -7,7 +7,14 @@
     <groupId>com.cxw.datastructure</groupId>
     <artifactId>datastructure</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <dependencies>
+        <!-- guava工具包-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>30.0-jre</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
